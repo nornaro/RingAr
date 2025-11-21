@@ -1,0 +1,321 @@
+[gd_scene load_steps=19 format=4 uid="uid://crm475gtku0mw"]
+
+[ext_resource type="Script" uid="uid://on5im6tnygja" path="res://ringa_ro.gd" id="1_igkpy"]
+[ext_resource type="Script" uid="uid://jbl2iicpe5sl" path="res://ship.gd" id="2_0bb7s"]
+[ext_resource type="Texture2D" uid="uid://784rgt7ld6wv" path="res://Mouse.png" id="2_a4n0p"]
+[ext_resource type="Script" uid="uid://bjee6v8cijkw" path="res://camera_3d.gd" id="2_bg7od"]
+[ext_resource type="Script" uid="uid://bnig01s13da3c" path="res://player_area_3d.gd" id="3_0bb7s"]
+[ext_resource type="PackedScene" uid="uid://07oeqfviuin4" path="res://Racer.glb" id="4_bg7od"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_igh2o"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_hkx15"]
+sky_material = SubResource("ProceduralSkyMaterial_igh2o")
+
+[sub_resource type="Environment" id="Environment_bg7od"]
+background_mode = 1
+sky = SubResource("Sky_hkx15")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0bb7s"]
+points = PackedVector3Array(-0.04060769, -0.46636668, -4.8422666, 0.9386666, -0.24025607, -0.020933151, 0.9386666, -0.3156484, -0.020933151, -0.9446666, -0.24025607, -0.020933151, 0.26043802, 0.2116333, -1.9799538, -0.34183776, 0.2116333, -1.3017768, -0.79386723, -0.39097437, -0.6240717, 0.33565336, -0.46636668, -3.4859126, -0.04060769, 0.060915023, -3.3353639, 0.10963864, -0.39097437, -4.691246, 0.7878672, -0.39097437, -0.6240717, -0.8692669, -0.24025607, -0.69911015, 0.33565336, 0.2116333, -1.3017768, 0.9386666, -0.24025607, -0.32250237, -0.11582304, -0.39097437, -4.6162076, -0.26662242, 0.2116333, -1.9044435, -0.26662242, -0.46636668, -3.8625202, -0.9446666, -0.3156484, -0.020933151, -0.79386723, -0.089736894, -0.39801288, 0.8632669, -0.16499649, -0.17195368, 0.33565336, -0.3156484, -3.4859126, 0.7878672, -0.39097437, -1.1512281, -0.79386723, -0.39097437, -1.0757178, -0.34183776, -0.3156484, -3.4108741, -0.26662242, -0.46636668, -3.4108741, 0.7878672, -0.089736894, -0.54856145, -0.49263716, 0.13624099, -1.1512281, 0.10963864, 0.060915023, -3.109305, -0.04060769, -0.39097437, -4.8422666, -0.9446666, -0.24025607, -0.32250237, 0.10963864, -0.46636668, -4.691246, 0.48663712, 0.13624099, -1.1512281)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a4n0p"]
+transparency = 1
+albedo_color = Color(0, 0, 1, 0.78431374)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_njme6"]
+_surfaces = [{
+"aabb": AABB(-0.5966658, -0.30368418, -3.709869, 1.1933316, 0.38391066, 2.1508026),
+"format": 34359742465,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAAAFAAQAAAAEAAMABgAAAAMABgADAAAABgADAAcABgAHAAMA"),
+"lods": [0.0151449535, PackedByteArray("AAABAAIAAAADAAEAAAAEAAMAAAAFAAQA")],
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAH58m75+bm3Ab0pOvspNpD20MQzAF78Yv2ANar58j8e/AAAAADCT47xMdkPAb0pOPspNpD20MQzAF78YP2ANar58j8e/AAAAAC16m75jU23AAAAAAGQLqbwfKz/A")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3tyqx"]
+resource_name = "Racer_Cube_002"
+_surfaces = [{
+"aabb": AABB(-0.5966658, -0.30368418, -3.709869, 1.1933316, 0.38391066, 2.1508026),
+"attribute_data": PackedByteArray("AADAPQAA4D4AAAAAAACAPwAAkD4AAOA+AAAAAAAAgD8AAMA9AADgPgAAAAAAAIA/AAAAAAAAgD8AAJA+AADgPp9LwD3QJeA+AAAAAAAAgD8AAMA9AADgPgAAAAAAAIA/n0vAPdAl4D4AAAAAAACAPwAAAAAAAIA/AADAPQAA4D4="),
+"format": 34359742487,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEACAAJAAoACAALAAkABAAFAAYABAAHAAUADAANAA4ADAAPAA0A"),
+"lods": [0.0151449535, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA")],
+"material": SubResource("StandardMaterial3D_a4n0p"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAAH58m75+bm3Ab0pOvspNpD20MQzAF78Yv2ANar58j8e/AAAAADCT47xMdkPAAAAAAH58m75+bm3Ab0pOPspNpD20MQzAAAAAADCT47xMdkPAF78YP2ANar58j8e/AAAAAC16m75jU23AAAAAADCT47xMdkPAAAAAAH58m75+bm3AAAAAAGQLqbwfKz/AAAAAAC16m75jU23AAAAAADCT47xMdkPAAAAAAGQLqbwfKz/AAAAAAH58m75+bm3ALSzYv7dkMT4tLNi/t2QxPi0s2L+3ZDE+LSzYv////7/R09i/R5vNwdHT2L9Hm83B0dPYv////7/R09i/R5vNwf///3//f4C6////f/9/gLr///9//3+Auv///3////+/AAD/f/9/fkUAAP9//39+RQAA/3////+/AAD/f/9/fkU=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_njme6")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_47l8t"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fttjs"]
+noise = SubResource("FastNoiseLite_47l8t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7opj"]
+albedo_color = Color(0.12591085, 0.12591085, 0.12591082, 1)
+metallic = 1.0
+metallic_texture = SubResource("NoiseTexture2D_fttjs")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_bxrdq"]
+_surfaces = [{
+"aabb": AABB(-0.907024, -0.42867383, -4.804616, 1.814048, 0.6249302, 4.746025),
+"format": 34359742465,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAgABAAgAAgAIAAQABQAEAAgABQAIAAEAAwAAAAIACQAFAAEAAAAJAAEAAwAFAAYABgAFAAkAAwAKAAAAAwAGAAoACgAHAAAACQAAAAcACgAGAAcABgAJAAcA"),
+"lods": [0.08706479, PackedByteArray("AAABAAIAAwAAAAIAAgABAAQABQAEAAEAAwAFAAYABgAFAAEAAwAGAAAABgABAAcAAQAAAAcABgAHAAAA")],
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 11,
+"vertex_data": PackedByteArray("Np17Pm73SD7eFL2/AAAAACNhTr5aYj7AujJoPyXAmL5A4YC9AAAAAJrqmb4A/W+9AAAAACN7275qv5nAujJovyXAmL5A4YC9Np17vm73SD7eFL2/AAAAAOC9Qbw08FPAAAAAAAXP174Ql5XAAAAAAIzMG70+hyHAAAAAAJp3Qj6iQL6/")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_w1tln"]
+resource_name = "Racer_Cube_003"
+_surfaces = [{
+"aabb": AABB(-0.907024, -0.42867383, -4.804616, 1.814048, 0.6249302, 4.746025),
+"attribute_data": PackedByteArray("AAAAAAAAgD///389AAAgPwAAkD4AAOA+AAAAAAAAgD8AAJA+AADgPhVswD0AAOA+//9/PQAAID8AAAAAAACAP///fz0AACA/AAAAAAAAgD8AAJA+AADgPgAAkD4AAOA+//9/PQAAID8VbMA9AADgPgAAAAAAAIA/AAAAAAAAgD8AAAAAAACAPwAAkD4AAOA+AAAAAAAAgD8AAJA+AADgPgAAAAAAAIA/AACQPgAA4D4AAAAAAACAP5WNuz2gq+Y+AAAAAAAAgD8AAAAAAACAP5WNuz2gq+Y+AAAAAAAAgD8AAAAAAACAPwAAkD4AAOA+AAAAAAAAgD8AAAAAAACAPw=="),
+"format": 34359742487,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAAAWAAEAFgAAAAMABAAXAAYABAAFABcABwAYAAkABwAKABgAGAAKAAgAGQAOAA8ACwAaAA0ACwAMABoAGwAcABAAHQASABMAHQAeABIAEQAUAB8AEQAVABQA"),
+"lods": [0.08706479, PackedByteArray("AAABAAIAAQAAAAMABAAFAAYABwAIAAkABwAKAAgACwAMAA0ADgAPABAAEQASABMAEQAUABIAEQAVABQA")],
+"material": SubResource("StandardMaterial3D_s7opj"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("Np17Pm73SD7eFL2/AAAAACNhTr5aYj7AujJoPyXAmL5A4YC9AAAAAOC9Qbw08FPAujJovyXAmL5A4YC9AAAAACN7275qv5nAAAAAACNhTr5aYj7ANp17vm73SD7eFL2/AAAAACNhTr5aYj7AAAAAAOC9Qbw08FPAujJovyXAmL5A4YC9ujJoPyXAmL5A4YC9AAAAACNhTr5aYj7AAAAAACN7275qv5nANp17vm73SD7eFL2/AAAAAOC9Qbw08FPANp17Pm73SD7eFL2/AAAAAJrqmb4A/W+9Np17Pm73SD7eFL2/ujJoPyXAmL5A4YC9Np17vm73SD7eFL2/ujJovyXAmL5A4YC9AAAAAIzMG70+hyHAAAAAAAXP174Ql5XAAAAAAIzMG70+hyHAAAAAAJp3Qj6iQL6/AAAAAAXP174Ql5XAAAAAAJp3Qj6iQL6/AAAAAOC9Qbw08FPAAAAAAJrqmb4A/W+9AAAAAJp3Qj6iQL6/AAAAAJp3Qj6iQL6/IORTsVWaG8Eg5FOxVZobwSDkU7FVmhvBIORTsf///78KT9jY7mt2PgpP2Njda3s+Ck/Y2O9rdj7eG1Ox////v94bU7GCZHNA3htTsf///7/eG1OxgmRzQPSw2NgQlIjB9LDY2A+UiMH0sNjYIZSDwfKOif3///+/8o6J/f///78McYn9////v9aARt7///8/KH9G3v///z8of0be////P9aARt7///8/1oBG3v///z8g5FOx////vwpP2Njea3o+3htTsYJkc0Dyjon9////v/Sw2NgglITBDHGJ/f///78McYn9////vyh/Rt7///8/KH9G3v///z/WgEbe////Pw==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_bxrdq")
+
+[node name="RingaRo" type="Node3D"]
+script = ExtResource("1_igkpy")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bg7od")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Rings" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Control" groups=["ProgressBar"]]
+unique_name_in_owner = true
+self_modulate = Color(0, 0.5882353, 0, 1)
+custom_minimum_size = Vector2(50, 200)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+offset_right = 4.0
+grow_vertical = 0
+max_value = 10000.0
+step = 1.0
+value = 10000.0
+fill_mode = 3
+
+[node name="GOver" type="Label" parent="Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1.9999999
+offset_top = -108.0
+offset_right = -1034.7
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(10, 10)
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 30.0
+text = "Score"
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="Control/Label6"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 80.0
+offset_bottom = 62.0
+horizontal_alignment = 1
+
+[node name="Title" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Mouse" type="Sprite2D" parent="Control/Title"]
+position = Vector2(1040, 544)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_a4n0p")
+
+[node name="Label" type="Label" parent="Control/Title/Mouse"]
+offset_left = -256.0
+offset_top = -208.0
+offset_right = -17.0
+offset_bottom = -185.0
+scale = Vector2(2, 2)
+text = "Turn: mouse | Speed: scroll"
+
+[node name="Label" type="Label" parent="Control/Title"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 450.0
+offset_right = 209.0
+offset_bottom = 473.0
+scale = Vector2(2, 2)
+text = "W"
+
+[node name="Label2" type="Label" parent="Control/Title"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 500.0
+offset_right = 159.0
+offset_bottom = 523.0
+scale = Vector2(2, 2)
+text = "A"
+
+[node name="Label3" type="Label" parent="Control/Title"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 500.0
+offset_right = 209.0
+offset_bottom = 523.0
+scale = Vector2(2, 2)
+text = "S"
+
+[node name="Label4" type="Label" parent="Control/Title"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 500.0
+offset_right = 259.0
+offset_bottom = 523.0
+scale = Vector2(2, 2)
+text = "D"
+
+[node name="Label5" type="Label" parent="Control/Title"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 544.0
+offset_right = 214.0
+offset_bottom = 567.0
+scale = Vector2(2, 2)
+text = "Up/Down Left Right"
+
+[node name="ItemList" type="ItemList" parent="Control/Title"]
+layout_mode = 0
+offset_left = 314.0
+offset_top = 38.0
+offset_right = 798.0
+offset_bottom = 317.0
+item_count = 10
+item_0/text = " "
+item_1/text = " "
+item_2/text = " "
+item_3/text = " "
+item_4/text = " "
+item_5/text = " "
+item_6/text = " "
+item_7/text = " "
+item_8/text = " "
+item_9/text = " "
+
+[node name="Label" type="Label" parent="Control/Title/ItemList"]
+top_level = true
+layout_mode = 0
+offset_left = 317.0
+offset_top = 15.0
+offset_right = 797.0
+offset_bottom = 38.0
+text = "High Score"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Control/Title"]
+layout_mode = 0
+offset_left = 494.0
+offset_top = 348.0
+offset_right = 559.0
+offset_bottom = 390.0
+scale = Vector2(2, 2)
+text = "Start"
+
+[node name="Ship" type="CharacterBody3D" parent="."]
+script = ExtResource("2_0bb7s")
+
+[node name="Camera3D" type="Camera3D" parent="Ship"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13250795, -3.7580018)
+current = true
+fov = 100.0
+far = 50.0
+script = ExtResource("2_bg7od")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Ship/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0)
+spot_range = 100.0
+spot_angle = 110.0
+
+[node name="Area3D" type="Area3D" parent="Ship/Camera3D"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 1.6754501)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("3_0bb7s")
+
+[node name="Timer" type="Timer" parent="Ship/Camera3D/Area3D"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Ship/Camera3D/Area3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.5300318, 8.330207)
+shape = SubResource("ConvexPolygonShape3D_0bb7s")
+
+[node name="Racer2" parent="Ship" instance=ExtResource("4_bg7od")]
+
+[node name="Cube_001" parent="Ship/Racer2" index="0"]
+mesh = SubResource("ArrayMesh_3tyqx")
+
+[node name="Cube_002" parent="Ship/Racer2" index="1"]
+mesh = SubResource("ArrayMesh_w1tln")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ship"]
+shape = SubResource("ConvexPolygonShape3D_0bb7s")
+
+[connection signal="changed" from="Control/ProgressBar" to="Control/ProgressBar" method="_on_changed"]
+[connection signal="area_entered" from="Ship/Camera3D/Area3D" to="Ship/Camera3D/Area3D" method="_on_area_entered"]
+[connection signal="area_shape_entered" from="Ship/Camera3D/Area3D" to="Ship/Camera3D/Area3D" method="_on_area_shape_entered"]
+
+[editable path="Ship/Racer2"]
