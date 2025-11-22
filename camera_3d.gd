@@ -2,7 +2,10 @@ extends FreeLookCamera
 
 var dir := Vector3.ZERO
 var vel := Vector3.ZERO
-var speed := 20
+
+
+func _ready() -> void:
+	dspeed = 10
 
 
 func _process(delta:float) -> void:
@@ -26,8 +29,8 @@ func _update_look() -> void:
 
 	var pitch_lim = clamp(
 		pitch,
-		-90.0 - _total_pitch,
-		90.0 - _total_pitch
+		-360 - _total_pitch,
+		360.0 - _total_pitch
 	)
 
 	_total_pitch += pitch_lim
@@ -39,7 +42,7 @@ func _update_look() -> void:
 	)
 
 
-func _update_move(delta:float) -> void:
+func _update_move(_delta:float) -> void:
 	var p := get_parent()
 	if not p is CharacterBody3D:
 		return

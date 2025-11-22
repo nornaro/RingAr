@@ -3,7 +3,7 @@ extends Node
 
 """
 Netfox
-seed
+*seed
 grayscale
 scoreboard
 cleanup

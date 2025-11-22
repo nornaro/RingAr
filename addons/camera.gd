@@ -17,6 +17,9 @@ var _velocity = Vector3(0.0, 0.0, 0.0)
 var _acceleration = 30
 var _deceleration = -10
 var _vel_multiplier = 4
+var speed:float
+var dspeed:float = 10
+var bspeed:float = dspeed
 
 # Keyboard state
 var _w = false
@@ -38,16 +41,41 @@ func _input(event):
 		match event.button_index:
 			MOUSE_BUTTON_RIGHT: # Only allows rotation if right click down
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if event.pressed else Input.MOUSE_MODE_VISIBLE)
+			#MOUSE_BUTTON_WHEEL_UP: # Increases max velocity
+				#_vel_multiplier = clamp(_vel_multiplier * 1.1, 0.2, 20)
+			#MOUSE_BUTTON_WHEEL_DOWN: # Decereases max velocity
+				#_vel_multiplier = clamp(_vel_multiplier / 1.1, 0.2, 20)
 			MOUSE_BUTTON_WHEEL_UP: # Increases max velocity
-				_vel_multiplier = clamp(_vel_multiplier * 1.1, 0.2, 20)
+				speed = clamp(lerp(speed,100.0,0.01), 0.0, 100.0)
 			MOUSE_BUTTON_WHEEL_DOWN: # Decereases max velocity
-				_vel_multiplier = clamp(_vel_multiplier / 1.1, 0.2, 20)
+				speed = clamp(lerp(speed,0.0,0.01), 0.0, 100.0)
 
 	# Receives key input
 	if event is InputEventKey:
 		match event.keycode:
+			KEY_0:
+				speed = 00 * bspeed
+			KEY_1:
+				speed = 10 * bspeed
+				print(speed)
+			KEY_2:
+				speed = 20 * bspeed
+			KEY_3:
+				speed = 30 * bspeed
+			KEY_4:
+				speed = 40 * bspeed
+			KEY_5:
+				speed = 50 * bspeed
+			KEY_6:
+				speed = 60 * bspeed
+			KEY_7:
+				speed = 70 * bspeed
+			KEY_8:
+				speed = 80 * bspeed
+			KEY_9:
+				speed = 90 * bspeed
 			KEY_W:
-				_w = event.pressed
+				_w = true
 			KEY_S:
 				_s = event.pressed
 			KEY_A:
@@ -59,9 +87,10 @@ func _input(event):
 			KEY_E:
 				_e = event.pressed
 			KEY_SHIFT:
-				_shift = event.pressed
+				_shift = true
 			KEY_ALT:
 				_alt = event.pressed
+	%Speed.text = str(round(speed*10)/10.0)
 
 # Updates mouselook and movement every frame
 func _process(delta):
@@ -109,7 +138,7 @@ func _update_mouselook():
 		_mouse_position = Vector2(0, 0)
 		
 		# Prevents looking up/down too far
-		pitch = clamp(pitch, -90 - _total_pitch, 90 - _total_pitch)
+		#pitch = clamp(pitch, -90 - _total_pitch, 90 - _total_pitch)
 		_total_pitch += pitch
 	
 		rotate_y(deg_to_rad(-yaw))

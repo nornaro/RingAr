@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://cl0bocggtfr4j"]
+[gd_scene load_steps=8 format=4 uid="uid://cl0bocggtfr4j"]
 
 [ext_resource type="Script" uid="uid://cfe58kbu3vhqy" path="res://torus.gd" id="2_v5e8n"]
 [ext_resource type="Script" uid="uid://cvydkye42jpod" path="res://area_3d.gd" id="3_e54ga"]
-[ext_resource type="Script" uid="uid://dgsnsdpn6trkk" path="res://2do.gd" id="4_v5e8n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w3vgq"]
 
@@ -63,7 +62,6 @@ script = ExtResource("3_e54ga")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_d3ipw")
 
-[node name="2DO" type="Node" parent="."]
-script = ExtResource("4_v5e8n")
-
 [node name="Ring" type="Node3D" parent="."]
+
+[node name="Highscore" type="Node" parent="."]
