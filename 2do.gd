@@ -2,13 +2,13 @@ extends Node
 
 
 """
-Netfox
+*db
 *seed
-grayscale
+*grayscale
 scoreboard
 cleanup
 settings
-variable speed
+*variable speed
 record
 
 """

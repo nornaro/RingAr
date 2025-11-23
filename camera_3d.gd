@@ -8,7 +8,7 @@ func _ready() -> void:
 	dspeed = 10
 
 
-func _process(delta:float) -> void:
+func _physics_process(delta:float) -> void:
 	_update_look()
 	_update_move(delta)
 
@@ -20,8 +20,8 @@ func _update_look() -> void:
 	var rel = _mouse_position * sensitivity
 	_mouse_position = Vector2.ZERO
 
-	var p := get_parent()
-	if not p is CharacterBody3D:
+	var parent := get_parent()
+	if not parent is PhysicsBody3D:
 		return
 
 	var yaw = rel.x
@@ -35,16 +35,18 @@ func _update_look() -> void:
 
 	_total_pitch += pitch_lim
 
-	p.rotate_y(deg_to_rad(-yaw))
-	p.rotate_object_local(
+	parent.rotate_y(deg_to_rad(-yaw))
+	parent.rotate_object_local(
 		Vector3.RIGHT,
 		deg_to_rad(-pitch_lim)
 	)
 
 
 func _update_move(_delta:float) -> void:
-	var p := get_parent()
-	if not p is CharacterBody3D:
+	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
+		return
+	var parent := get_parent()
+	if not parent is PhysicsBody3D:
 		return
 
 	dir = Vector3.ZERO
@@ -53,13 +55,13 @@ func _update_move(_delta:float) -> void:
 	dir.z = float(_s) - float(_w)
 
 	if dir == Vector3.ZERO:
-		p.velocity = Vector3.ZERO
-		p.move_and_slide()
+		parent.velocity = Vector3.ZERO
+		parent.move_and_slide()
 		return
 
 	var m := dir.normalized()
-	var f = p.transform.basis * m
+	var f = parent.transform.basis * m
 	var v = f * speed
 
-	p.velocity = v
-	p.move_and_slide()
+	parent.velocity = v
+	parent.move_and_slide()

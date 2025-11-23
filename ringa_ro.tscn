@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://crm475gtku0mw"]
+[gd_scene load_steps=32 format=4 uid="uid://crm475gtku0mw"]
 
 [ext_resource type="Script" uid="uid://on5im6tnygja" path="res://ringa_ro.gd" id="1_igkpy"]
 [ext_resource type="Script" uid="uid://jbl2iicpe5sl" path="res://ship.gd" id="2_0bb7s"]
@@ -9,7 +9,11 @@
 [ext_resource type="Script" uid="uid://dy7vogqh1sfke" path="res://v_slider.gd" id="4_47l8t"]
 [ext_resource type="PackedScene" uid="uid://07oeqfviuin4" path="res://Racer.glb" id="4_bg7od"]
 [ext_resource type="Script" uid="uid://d11rru3pc65rn" path="res://check_box.gd" id="5_s7opj"]
+[ext_resource type="Texture2D" uid="uid://hqld7u481lvs" path="res://EpiWarning.png" id="6_3gpbn"]
+[ext_resource type="Script" uid="uid://cprmtehqtrl37" path="res://epi_warning_button.gd" id="7_m3c1b"]
 [ext_resource type="Script" uid="uid://dgsnsdpn6trkk" path="res://2do.gd" id="9_fttjs"]
+[ext_resource type="Script" uid="uid://cipu3xx7e26nk" path="res://audio_stream_player.gd" id="11_bxrdq"]
+[ext_resource type="AudioStream" uid="uid://dgrs2usrcmh4h" path="res://EndlessRunnerStyleShift_FULL_SONG_MusicGPT.mp3" id="11_w1tln"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_igh2o"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -31,6 +35,14 @@ bg_color = Color(0.3266795, 0.3266795, 0.32667947, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s7opj"]
 texture = ExtResource("2_fttjs")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35gem"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.5882353, 0, 0, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0bb7s"]
 points = PackedVector3Array(-0.04060769, -0.46636668, -4.8422666, 0.9386666, -0.24025607, -0.020933151, 0.9386666, -0.3156484, -0.020933151, -0.9446666, -0.24025607, -0.020933151, 0.26043802, 0.2116333, -1.9799538, -0.34183776, 0.2116333, -1.3017768, -0.79386723, -0.39097437, -0.6240717, 0.33565336, -0.46636668, -3.4859126, -0.04060769, 0.060915023, -3.3353639, 0.10963864, -0.39097437, -4.691246, 0.7878672, -0.39097437, -0.6240717, -0.8692669, -0.24025607, -0.69911015, 0.33565336, 0.2116333, -1.3017768, 0.9386666, -0.24025607, -0.32250237, -0.11582304, -0.39097437, -4.6162076, -0.26662242, 0.2116333, -1.9044435, -0.26662242, -0.46636668, -3.8625202, -0.9446666, -0.3156484, -0.020933151, -0.79386723, -0.089736894, -0.39801288, 0.8632669, -0.16499649, -0.17195368, 0.33565336, -0.3156484, -3.4859126, 0.7878672, -0.39097437, -1.1512281, -0.79386723, -0.39097437, -1.0757178, -0.34183776, -0.3156484, -3.4108741, -0.26662242, -0.46636668, -3.4108741, 0.7878672, -0.089736894, -0.54856145, -0.49263716, 0.13624099, -1.1512281, 0.10963864, 0.060915023, -3.109305, -0.04060769, -0.39097437, -4.8422666, -0.9446666, -0.24025607, -0.32250237, 0.10963864, -0.46636668, -4.691246, 0.48663712, 0.13624099, -1.1512281)
@@ -113,6 +125,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bxrdq")
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w1tln"]
+radius = 0.25
+height = 3.0
+
 [node name="RingaRo" type="Node3D"]
 script = ExtResource("1_igkpy")
 
@@ -155,7 +171,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HUD" type="Control" parent="Control"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -209,8 +224,18 @@ offset_bottom = 30.0
 text = "0"
 horizontal_alignment = 1
 
+[node name="Seed" type="Label" parent="Control/HUD"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 14.5
+offset_top = 60.0
+offset_right = 354.5
+offset_bottom = 83.0
+text = "Seed: 0"
+
 [node name="Title" type="Panel" parent="Control"]
 unique_name_in_owner = true
+process_mode = 3
 top_level = true
 layout_mode = 1
 anchors_preset = 15
@@ -222,6 +247,7 @@ theme = SubResource("Theme_3tyqx")
 theme_override_styles/panel = SubResource("StyleBoxFlat_47l8t")
 
 [node name="Difficulty" type="VSlider" parent="Control/Title"]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -252,19 +278,44 @@ offset_right = -60.0
 offset_bottom = 173.0
 text = "Difficulty:"
 
+[node name="Label2" type="Label" parent="Control/Title"]
+layout_mode = 0
+offset_left = 1160.0
+offset_top = 62.0
+offset_right = 1220.0
+offset_bottom = 85.0
+tooltip_text = "Numpad +/-
+M to mute"
+mouse_filter = 0
+text = "Volume"
+
+[node name="Label2" type="Label" parent="Control/Title/Label2"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 2.0
+offset_right = 98.0
+offset_bottom = 25.0
+tooltip_text = "Numpad +/-"
+mouse_filter = 0
+text = "100"
+horizontal_alignment = 2
+
 [node name="CheckBox" type="CheckBox" parent="Control/Title"]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -104.0
-offset_bottom = 31.0
+offset_left = -120.0
+offset_top = 30.0
+offset_bottom = 61.0
 grow_horizontal = 0
 tooltip_text = "Greyscale mode"
 text = "Greyscale   "
 script = ExtResource("5_s7opj")
 
 [node name="VBoxContainer" type="HBoxContainer" parent="Control/Title"]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -277,18 +328,22 @@ grow_horizontal = 2
 theme_override_constants/separation = 10
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Control/Title/VBoxContainer"]
+process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/Title/VBoxContainer/VBoxContainer2"]
+process_mode = 3
 layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="Control/Title/VBoxContainer/VBoxContainer2/HBoxContainer"]
+process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Seed"
 
 [node name="Load" type="ItemList" parent="Control/Title/VBoxContainer/VBoxContainer2"]
+process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -305,15 +360,18 @@ item_8/text = " "
 item_9/text = " "
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Title/VBoxContainer"]
+process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Control/Title/VBoxContainer/VBoxContainer"]
+process_mode = 3
 layout_mode = 2
 text = "High Score"
 horizontal_alignment = 1
 
 [node name="HighScore" type="ItemList" parent="Control/Title/VBoxContainer/VBoxContainer"]
+process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -330,6 +388,7 @@ item_8/text = " "
 item_9/text = " "
 
 [node name="Container" type="Control" parent="Control/Title"]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 0
 offset_left = 2.0
@@ -338,6 +397,7 @@ offset_right = 1265.0
 offset_bottom = 718.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/Title/Container"]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -458,6 +518,7 @@ text = "Start"
 script = ExtResource("3_3tyqx")
 
 [node name="Label" type="Label" parent="Control/Title"]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -470,6 +531,7 @@ text = "Credits"
 horizontal_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/Title"]
+process_mode = 3
 layout_mode = 0
 offset_left = 25.0
 offset_top = 60.0
@@ -480,13 +542,60 @@ text = "Leo Close: [br]Godot Firebase Lite
 Adam Viola: [br]Simple Free-Look Camera
 "
 
+[node name="EpiWarningButton" type="TextureButton" parent="Control/Title"]
+layout_mode = 0
+offset_left = 845.00006
+offset_top = 522.0
+offset_right = 1165.0
+offset_bottom = 842.0
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("6_3gpbn")
+script = ExtResource("7_m3c1b")
+
+[node name="EpiWarningText" type="RichTextLabel" parent="Control/Title"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/table_border = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_styles/normal = SubResource("StyleBoxFlat_35gem")
+text = "There will be fast flshing vivid colors in this game.
+In case you have Epilepsy or any sensitivity."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.5
+offset_right = 22.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Ship" type="CharacterBody3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("2_0bb7s")
 
 [node name="Camera3D" type="Camera3D" parent="Ship"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -3.758)
+transform = Transform3D(10.000001, 0, 0, 0, 10, 0, 0, 0, 10.000001, -0.25, 0.25, -3.5)
 current = true
 fov = 100.0
 far = 50.0
@@ -509,6 +618,7 @@ one_shot = true
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Ship/Camera3D/Area3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.5300318, 8.330207)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_0bb7s")
 
 [node name="Racer2" parent="Ship" instance=ExtResource("4_bg7od")]
@@ -519,11 +629,22 @@ mesh = SubResource("ArrayMesh_3tyqx")
 [node name="Cube_002" parent="Ship/Racer2" index="1"]
 mesh = SubResource("ArrayMesh_w1tln")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ship"]
-shape = SubResource("ConvexPolygonShape3D_0bb7s")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Ship"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.25, -0.25, -2.894)
+shape = SubResource("CapsuleShape3D_w1tln")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Ship"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.25, -0.25, -2.8939388)
+shape = SubResource("CapsuleShape3D_w1tln")
 
 [node name="2DO" type="Node" parent="."]
 script = ExtResource("9_fttjs")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_w1tln")
+volume_db = -80.0
+autoplay = true
+script = ExtResource("11_bxrdq")
 
 [connection signal="changed" from="Control/HUD/ProgressBar" to="Control/HUD/ProgressBar" method="_on_changed"]
 [connection signal="area_entered" from="Ship/Camera3D/Area3D" to="Ship/Camera3D/Area3D" method="_on_area_entered"]

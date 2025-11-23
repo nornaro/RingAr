@@ -2,7 +2,6 @@ extends Area3D
 
 const SHIFT_MULTIPLIER = 25
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	connect("area_exited",_on_exited)
 

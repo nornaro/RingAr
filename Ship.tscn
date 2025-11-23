@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://8p8un7rqw17p"]
+[gd_scene load_steps=12 format=4 uid="uid://8p8un7rqw17p"]
 
 [ext_resource type="Script" uid="uid://bjee6v8cijkw" path="res://camera_3d.gd" id="1_h40nn"]
 [ext_resource type="Script" uid="uid://bnig01s13da3c" path="res://player_area_3d.gd" id="2_j1fgw"]
@@ -71,6 +71,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8kpw8")
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oam5h"]
+radius = 0.125
+height = 1.0
+
 [node name="Ship" type="CharacterBody3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -93,9 +97,10 @@ script = ExtResource("2_j1fgw")
 unique_name_in_owner = true
 one_shot = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D"]
-transform = Transform3D(0.2074183, 0, 0, 0, 0.1843718, 0, 0, 0, 0.2765577, 0, -0.41356552, 3.0071054)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/Area3D"]
+transform = Transform3D(0.8296732, 0, 0, 0, 0.7374872, 0, 0, 0, 1.1062309, 0, -1.6542621, 5.326621)
 shape = SubResource("ConvexPolygonShape3D_oam5h")
+disabled = true
 
 [node name="Cube_001" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, 0.017339185, 0, 0.008158829)
@@ -112,9 +117,13 @@ skeleton = NodePath("")
 [node name="Racer" parent="." instance=ExtResource("3_oam5h")]
 transform = Transform3D(0.3, 0, 0, 0, 0.5, 0, 0, 0, 0.3, 0, 0, 0)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.2074183, 0, 0, 0, 0.1843718, 0, 0, 0, 0.2765577, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_oam5h")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.125, 0, -0.4)
+shape = SubResource("CapsuleShape3D_oam5h")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.125, 0, -0.4)
+shape = SubResource("CapsuleShape3D_oam5h")
 
 [connection signal="area_entered" from="Camera3D/Area3D" to="Camera3D/Area3D" method="_on_area_entered"]
 [connection signal="area_shape_entered" from="Camera3D/Area3D" to="Camera3D/Area3D" method="_on_area_shape_entered"]
