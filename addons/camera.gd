@@ -46,9 +46,10 @@ func _input(event):
 			#MOUSE_BUTTON_WHEEL_DOWN: # Decereases max velocity
 				#_vel_multiplier = clamp(_vel_multiplier / 1.1, 0.2, 20)
 			MOUSE_BUTTON_WHEEL_UP: # Increases max velocity
-				speed = clamp(lerp(speed,100.0,0.01), 0.0, 100.0)
+				speed *= 1.01
 			MOUSE_BUTTON_WHEEL_DOWN: # Decereases max velocity
-				speed = clamp(lerp(speed,0.0,0.01), 0.0, 100.0)
+				speed /= 1.01
+		speed = clamp(speed, 0.0, 1000.0)
 
 	# Receives key input
 	if event is InputEventKey:

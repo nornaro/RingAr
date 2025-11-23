@@ -16,11 +16,11 @@ var ring_reg:Dictionary = {}
 
 
 func _ready() -> void:
-	if wseed:
-		rnd.seed = wseed
+	if %CustomSeed.text != "":
+		rnd.seed = int(%CustomSeed.text)
 	SB.wseed = rnd.seed
-	%Seed.text = "Speed: " + str(rnd.seed)
-	_gen()
+	SB.sseed = str(rnd.seed)
+	%Seed.text = str(rnd.seed)
 	
 	%Start.visible = true
 

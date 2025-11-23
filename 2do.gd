@@ -5,10 +5,12 @@ extends Node
 *db
 *seed
 *grayscale
-scoreboard
+#scoreboard
 cleanup
-settings
+#settings
 *variable speed
 record
-
+#db check correctly if exist before pull
+#scroll speed broken
+game over-> new
 """

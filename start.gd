@@ -13,8 +13,15 @@ func _on_pressed() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	get_tree().paused = false
 	$"../../..".set_physics_process(true)
+	
+	SB.wseed = int(%CustomSeed.text)
+	SB.sseed = %CustomSeed.text
+	print(int(%CustomSeed.text))
+	print(SB.wseed)
+	%Rings._gen()
+	%Rings.set_physics_process(true)
 
-func _input(event):
+func _input(event:InputEvent):
 	if event is not InputEventKey:
 		return
 	if event is not InputEventKey:

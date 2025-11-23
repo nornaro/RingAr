@@ -23,22 +23,22 @@ func load_all() -> void:
 		var json:FileAccess = FileAccess.open("highscore.json", FileAccess.WRITE)
 		json.store_string(JSON.stringify(await dbload()))
 	cache = JSON.parse_string(FileAccess.get_file_as_string("highscore.json"))
+		
 
 func dbload() -> Dictionary:
 	FirebaseLite.initialize(firebaseConfig)
-	var res:Dictionary = await FirebaseLite.RealtimeDatabase.read("")
+	var res = await FirebaseLite.RealtimeDatabase.read("")
 	if typeof(res) != TYPE_DICTIONARY:
 		return {}
 	return res["mini-jam-198-speed"]
 
 func save() -> void:
 	FirebaseLite.initialize(firebaseConfig)
-	var f := FileAccess.open("highscore.json", FileAccess.WRITE)
-	if f == null:
+	var json := FileAccess.open("highscore.json", FileAccess.WRITE)
+	if json == null:
 		return
 
-	var txt := JSON.stringify(cache)
-	f.store_string(txt)
+	json.store_string(JSON.stringify(cache))
 
 	await FirebaseLite.RealtimeDatabase.write("mini-jam-198-speed", cache)
 	emit_signal("done")
