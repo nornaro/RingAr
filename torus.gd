@@ -12,12 +12,9 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if SB.greyscale:
-		var d:int = randi_range(-1, 1) / 100.0
-		var g:int = clamp((clr.r + clr.g + clr.b) / 3.0 + d, 0.0, 1.0)
-
-		clr.r = g
-		clr.g = g
-		clr.b = g
+		clr.r += randf_range(-1, 1)/100
+		clr.g = clr.r
+		clr.b = clr.r
 
 		mat.albedo_color = clr
 		return

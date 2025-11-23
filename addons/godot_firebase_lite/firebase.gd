@@ -12,7 +12,6 @@ var firebaseConfig : Dictionary
 
 #func _ready() -> void:
 	#FirebaseLite.initialize(HighScore.new().firebaseConfig)
-	#print(await FirebaseLite.RealtimeDatabase.read(""))
 	#pass
 	
 func initialize(config : Dictionary):

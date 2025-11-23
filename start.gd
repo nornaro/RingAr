@@ -16,8 +16,6 @@ func _on_pressed() -> void:
 	
 	SB.wseed = int(%CustomSeed.text)
 	SB.sseed = %CustomSeed.text
-	print(int(%CustomSeed.text))
-	print(SB.wseed)
 	%Rings._gen()
 	%Rings.set_physics_process(true)
 

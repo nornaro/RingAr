@@ -9,4 +9,5 @@ func _ready() -> void:
 func _on_drag_ended(ch:bool) -> void:
 	if ch:
 		$Label.text = str(value)
-		%Ship.scale = Vector3.ONE * value
+		%Ship/CollisionShape3D2.scale = Vector3.ONE * value
+		%Ship/CollisionShape3D3.scale = Vector3.ONE * value

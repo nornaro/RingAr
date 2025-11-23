@@ -50,15 +50,15 @@ func _input(event):
 			MOUSE_BUTTON_WHEEL_DOWN: # Decereases max velocity
 				speed /= 1.01
 		speed = clamp(speed, 0.0, 1000.0)
-
+	#bspeed = dspeed 
 	# Receives key input
+	#bspeed = dspeed / %Difficulty.value / 16 / %Difficulty.value
 	if event is InputEventKey:
 		match event.keycode:
 			KEY_0:
 				speed = 00 * bspeed
 			KEY_1:
 				speed = 10 * bspeed
-				print(speed)
 			KEY_2:
 				speed = 20 * bspeed
 			KEY_3:
@@ -91,7 +91,7 @@ func _input(event):
 				_shift = true
 			KEY_ALT:
 				_alt = event.pressed
-	%Speed.text = str(round(speed*10)/10.0)
+	%Speed.text = str(round(speed*10)/100.0)
 
 # Updates mouselook and movement every frame
 #func _process(delta):

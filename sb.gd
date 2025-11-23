@@ -24,6 +24,7 @@ func check_highscore() -> bool:
 	):
 		return false
 	highscore.cache = await highscore.dbload()
+	get_tree().call_group("LoadSeed","update")
 	highscore.cache.sort()
 	if (highscore.cache.has(sseed) and
 		highscore.cache[sseed].size() == 15 and 

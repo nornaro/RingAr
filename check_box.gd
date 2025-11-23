@@ -6,4 +6,4 @@ func _ready() -> void:
 	connect("toggled",_on_toggled)
 	
 func _on_toggled(t:bool) -> void:
-	SB.gs = t
+	SB.greyscale = t

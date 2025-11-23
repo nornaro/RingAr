@@ -14,13 +14,15 @@ var ring_reg:Dictionary = {}
 
 
 func _ready() -> void:
-	SB.highscore.load_all()
+	#SB.highscore.load_all()
+	#SB.highscore.dbload()
 	if %CustomSeed.text != "":
 		rnd.seed = int(%CustomSeed.text)
 	SB.wseed = rnd.seed
 	SB.sseed = str(rnd.seed)
 	%Seed.text = str(rnd.seed)
 	%CustomSeed.text = str(rnd.seed)
+	get_tree().call_group("LoadSeed","update")
 	
 	%Start.visible = true
 
