@@ -18,5 +18,5 @@ func _on_item_selected(item: int) -> void:
 	%HighScore.clear()
 	%Seed.text = %CustomSeed.text
 	for i in SB.highscore.cache[%CustomSeed.text]:
-		%HighScore.add_item(str(int(SB.highscore.cache[%CustomSeed.text][i])))
+		%HighScore.add_item(str(int(i)))
 	

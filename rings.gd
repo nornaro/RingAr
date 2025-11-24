@@ -54,6 +54,10 @@ func gen_ring() -> void:
 	
 var c:float
 func _physics_process(delta: float) -> void:
+	
+	if Input.is_action_just_pressed("Fullscreen"):
+			fullscreen()
+	
 	if SB.ring_count < 1:
 		return
 	if c >= 6:
@@ -66,3 +70,11 @@ func _physics_process(delta: float) -> void:
 	while get_tree().get_node_count_in_group("ring") < ring_count_max:
 		gen_ring()
 	
+
+func fullscreen() -> void:
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		return
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		return

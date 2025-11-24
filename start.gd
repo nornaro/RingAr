@@ -19,9 +19,7 @@ func _on_pressed() -> void:
 	%Rings._gen()
 	%Rings.set_physics_process(true)
 
-func _input(event:InputEvent):
-	if event is not InputEventKey:
-		return
+func _input(event:InputEvent) -> void:
 	if event is not InputEventKey:
 		return
 	if !event.pressed:
